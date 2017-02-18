@@ -1,3 +1,6 @@
+# 2017-02-19
+# TODO: add a license
+
 #import random for choice method
 import random
 
