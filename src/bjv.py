@@ -25,7 +25,7 @@ for i in range(len(spades_rank)):
         spades[spades_rank[i]] = "King of spades"
 
     else:
-        spades[spades_rank[i]] = " %d of spades" % (spades_rank[i])
+        spades[spades_rank[i]] = "%d of spades" % (spades_rank[i])
 
 # Creating the clubs
 clubs_rank = [x for x in range(14,27)]
@@ -46,7 +46,7 @@ for i in range(len(clubs_rank)):
         clubs[clubs_rank[i]] = "King of clubs"
 
     else:
-        clubs[clubs_rank[i]] = " %d of clubs" % (clubs_rank[i] % 13)
+        clubs[clubs_rank[i]] = "%d of clubs" % (clubs_rank[i] % 13)
 
 # Creating the diamonds
 diamonds_rank = [x for x in range(27,40)]
@@ -67,7 +67,7 @@ for i in range(len(diamonds_rank)):
         diamonds[diamonds_rank[i]] = "King of diamonds"
 
     else:
-        diamonds[diamonds_rank[i]] = " %d of diamonds" % (diamonds_rank[i] % 13)
+        diamonds[diamonds_rank[i]] = "%d of diamonds" % (diamonds_rank[i] % 13)
 
 # Creating the hearts
 hearts_rank = [x for x in range(40,53)]
@@ -87,7 +87,7 @@ for i in range(len(hearts_rank)):
         hearts[hearts_rank[i]] = "King of hearts"
 
     else:
-        hearts[hearts_rank[i]] = " %d of hearts" % (hearts_rank[i] % 13)
+        hearts[hearts_rank[i]] = "%d of hearts" % (hearts_rank[i] % 13)
 
 # Putting the suits together to make a deck
 deck = {}
