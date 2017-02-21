@@ -1,13 +1,10 @@
-# 2017-02-19
-# TODO: add a license
-
-#import random for choice method
+# import random for choice method
 import random
 
 # Creating a deck of cards from scratch
 
 # Creating the spades
-spades_rank = [x for x in range(1,14)]
+spades_rank = [x for x in range(1, 14)]
 
 spades = {}
 
@@ -25,10 +22,10 @@ for i in range(len(spades_rank)):
         spades[spades_rank[i]] = "King of spades"
 
     else:
-        spades[spades_rank[i]] = "%d of spades" % (spades_rank[i])
+        spades[spades_rank[i]] = " %d of spades" % (spades_rank[i])
 
 # Creating the clubs
-clubs_rank = [x for x in range(14,27)]
+clubs_rank = [x for x in range(14, 27)]
 clubs = {}
 
 for i in range(len(clubs_rank)):
@@ -46,10 +43,10 @@ for i in range(len(clubs_rank)):
         clubs[clubs_rank[i]] = "King of clubs"
 
     else:
-        clubs[clubs_rank[i]] = "%d of clubs" % (clubs_rank[i] % 13)
+        clubs[clubs_rank[i]] = " %d of clubs" % (clubs_rank[i] % 13)
 
 # Creating the diamonds
-diamonds_rank = [x for x in range(27,40)]
+diamonds_rank = [x for x in range(27, 40)]
 diamonds = {}
 
 for i in range(len(diamonds_rank)):
@@ -67,10 +64,10 @@ for i in range(len(diamonds_rank)):
         diamonds[diamonds_rank[i]] = "King of diamonds"
 
     else:
-        diamonds[diamonds_rank[i]] = "%d of diamonds" % (diamonds_rank[i] % 13)
+        diamonds[diamonds_rank[i]] = " %d of diamonds" % (diamonds_rank[i] % 13)
 
 # Creating the hearts
-hearts_rank = [x for x in range(40,53)]
+hearts_rank = [x for x in range(40, 53)]
 hearts = {}
 
 for i in range(len(hearts_rank)):
@@ -87,7 +84,7 @@ for i in range(len(hearts_rank)):
         hearts[hearts_rank[i]] = "King of hearts"
 
     else:
-        hearts[hearts_rank[i]] = "%d of hearts" % (hearts_rank[i] % 13)
+        hearts[hearts_rank[i]] = " %d of hearts" % (hearts_rank[i] % 13)
 
 # Putting the suits together to make a deck
 deck = {}
@@ -97,9 +94,9 @@ deck.update(clubs)
 deck.update(diamonds)
 deck.update(hearts)
 
+
 # Creating a function for the blackjack value of the key
 def blackjack_value(key_value):
-
     if key_value % 13 == 0:
         value = 10
 
@@ -110,6 +107,7 @@ def blackjack_value(key_value):
         value = key_value % 13
 
     return value
+
 
 # Printing instructions for the game to the user
 instruction = """\nIn this game, you are the only player, and there are two types of scores - the round score and the game score.
@@ -127,26 +125,89 @@ All face cards are worth 10.
 
     """
 
+print(instruction)
+
 # Create a deck as a list of keys to be randomly chosen with choice method
-cards = [x for x in range(1,53)]
+cards = [x for x in range(1, 53)]
 
-# Choose a card at random
-card = random.choice(cards)
+# Initialize the values for the scores
+current_round = 1
+game_score = 100
 
-# Check if the card has been chosen or not
+# A list for chosen cards
 chosen = []
 
-# Add card to chosen
-chosen.append(card)
+# Start first round and set while loop to go for 5 rounds.
+while current_round < 6:
 
-if card not in chosen:
-    card = random.choice(cards)
-    chosen.append(card)
+    print("\nThe current round is ", current_round)
+    print("The current game score is: ", game_score)
+    round_score = 0
+    # Choose a card at random
+    your_card = random.choice(cards)
 
-# Set the card equal to the dictionary key value
-first_card = chosen[0]
+    print("\nYour card is the", deck.get(your_card))
+    print("The value of the card is", blackjack_value(your_card))
+
+    chosen.append(your_card)
+    round_score += blackjack_value(your_card)
+
+    while round_score < 21:
+        print("Current round score: ", round_score)
+        hit = input("\nDo you want another card? Type 'y' for yes or 'n' for no: ")
+
+        if hit != "y" and hit != "n":
+            while hit != "y" and hit != "n":
+                print("Invalid command. Please try again:")
+                hit = input("Do you want another card? Type 'y' for yes or 'n' for no: ")
+                if hit == "y" or hit == "n":
+                    break
+
+        if hit == "y":
+            your_card = random.choice(cards)
+            while your_card in chosen:
+                your_card = random.choice(cards)
+
+            print("Your card is the", deck.get(your_card))
+            print("The value of the card is", blackjack_value(your_card))
+            # Set the card equal to the dictionary key value
+            chosen.append(your_card)
+            round_score += blackjack_value(your_card)
+
+        elif hit == "n":
+            break
+
+        print("Total round score: ", round_score)
+
+    if round_score > 21:
+        print("Unlucky, you busted")
+        game_score -= 21
+
+    else:
+        game_score -= (21 - round_score)
+
+    current_round += 1
+
+print("\nYour final score is: ", game_score)
 
 
-print("Your first card is the", deck.get(first_card))
-print("The value of the card is", blackjack_value(first_card))
+grade_f = [x for x in range(1, 60)]
+grade_d = [x for x in range(60, 70)]
+grade_c = [x for x in range(70, 80)]
+grade_b = [x for x in range(80, 90)]
+grade_a = [x for x in range(90, 101)]
 
+if game_score in grade_f:
+    print("Your final game grade is an F")
+
+elif game_score in grade_d:
+    print("Your final game grade is a D")
+
+elif game_score in grade_c:
+    print("Your final game grade is a C")
+
+elif game_score in grade_b:
+    print("Your final game grade is a B")
+
+elif game_score in grade_a:
+    print("Your final game grade is an A!")
