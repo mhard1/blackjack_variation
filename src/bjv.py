@@ -1,3 +1,4 @@
+# TODO: rework deck generation into a single function
 # import random for choice method
 import random
 
