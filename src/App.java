@@ -11,7 +11,7 @@ public class App {
         List<Integer> modeInts = new ArrayList<>();
         int trackedInt = array[0];
         int currCount = 1;
-        int maxCount = 1;
+        int maxCount = 0;
         for (int i = 1; i < array.length; i++) {
             int currInt = array[i];
             if (currInt == trackedInt) {
