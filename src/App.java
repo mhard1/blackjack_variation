@@ -10,22 +10,22 @@ public class App {
         Integer[] array = new Integer[]{1,2,3,4,5,5,5,6,7,7,7,9,9};
         List<Integer> modeInts = new ArrayList<>();
         int trackedInt = array[0];
-        int currCount = 1;
+        int trackedCount = 1;
         int maxCount = 0;
         for (int i = 1; i < array.length; i++) {
             int currInt = array[i];
             if (currInt == trackedInt) {
-                currCount++;
+                trackedCount++;
             } else {
-                if (currCount > maxCount) {
-                    maxCount = currCount;
+                if (trackedCount > maxCount) {
+                    maxCount = trackedCount;
                     modeInts.clear();
                     modeInts.add(trackedInt);
-                } else if (currCount == maxCount) {
+                } else if (trackedCount == maxCount) {
                     modeInts.add(trackedInt);
                 }
 
-                currCount = 1;
+                trackedCount = 1;
                 trackedInt = currInt;
             }
         }
