@@ -11,7 +11,4 @@ The rules of the game can be viewed once you open the file, in the instructions.
 Basically, you are trying to get as close to 21 as possible every round, without busting.
 You have 5 rounds to achieve your best score, and you will get a grade based on your score.
 
-This game runs in python, and I recommend you use Pycharm to run it. Make sure you get the community edition.
-
-You can download PyCharm [here.](https://www.jetbrains.com/pycharm/download/)
-
+This game runs in python3.
